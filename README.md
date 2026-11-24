@@ -1,4 +1,4 @@
-# KilatMart Query Federation (opsi A2)
+# KilatMart Query Federation
 
 Satu query SQL menggabungkan tabel `orders` (PostgreSQL) dan `stock` (MySQL) lewat DuckDB, tanpa menyalin data. Pertanyaan yang dijawab: **order berstatus `paid` yang barangnya sudah di bawah batas reorder**.
 
