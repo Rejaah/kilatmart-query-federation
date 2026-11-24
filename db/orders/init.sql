@@ -21,3 +21,8 @@ INSERT INTO orders (customer_name, sku, qty, status, total_amount) VALUES
     ('Joko Susilo',     'SKU-002', 4, 'paid',      240000),
     ('Kiki Amelia',     'SKU-001', 2, 'pending',   170000),
     ('Lina Marlina',    'SKU-006', 3, 'paid',      225000);
+
+CREATE USER fed_ro WITH PASSWORD 'fed_ro_pw';
+GRANT CONNECT ON DATABASE shop TO fed_ro;
+GRANT USAGE ON SCHEMA public TO fed_ro;
+GRANT SELECT ON orders TO fed_ro;

@@ -14,3 +14,6 @@ INSERT INTO stock (sku, product_name, qty_on_hand, reorder_level, warehouse) VAL
     ('SKU-004', 'Telur Ayam 1 kg',   10,  10, 'Gudang Surabaya'),
     ('SKU-005', 'Susu UHT 1 L',     100,  20, 'Gudang Jakarta'),
     ('SKU-006', 'Mie Instan Dus',    40,  15, 'Gudang Surabaya');
+
+CREATE USER 'fed_ro'@'%' IDENTIFIED BY 'fed_ro_pw';
+GRANT SELECT ON inventory.stock TO 'fed_ro'@'%';
