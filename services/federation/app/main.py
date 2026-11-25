@@ -1,8 +1,9 @@
 import logging
 import sys
+from pathlib import Path
 
 from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse, PlainTextResponse
+from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse
 
 from app.federation import (
     QueryFailed, QueryTimeout, SourceUnavailable,
@@ -14,6 +15,8 @@ logging.basicConfig(level=logging.INFO, stream=sys.stdout,
 log = logging.getLogger("federation")
 
 app = FastAPI(title="federation")
+
+ANALYST_PAGE = Path(__file__).parent / "static" / "analyst.html"
 
 
 @app.exception_handler(SourceUnavailable)
@@ -35,6 +38,11 @@ async def on_query_timeout(request: Request, exc: QueryTimeout):
 async def on_query_failed(request: Request, exc: QueryFailed):
     log.error("path=%s error=query_failed detail=%s", request.url.path, exc)
     return JSONResponse(status_code=500, content={"error": "query_failed", "detail": str(exc)})
+
+
+@app.get("/", response_class=HTMLResponse, include_in_schema=False)
+def analyst_page():
+    return ANALYST_PAGE.read_text(encoding="utf-8")
 
 
 @app.get("/health")
