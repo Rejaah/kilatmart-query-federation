@@ -1,0 +1,21 @@
+== 0. siapkan: stok SKU-001 = 50, turunkan ke 2 sebagai penanda data
+$ PUT http://localhost:8002/stock/SKU-001  qty_on_hand=2
+   HTTP 200  0.146507s  {"query":"low_stock_paid_orders","sources":["orders-db","stock-db"],"row_count":5,"elapsed_ms":135,"rows":[{"order_id":1,"customer_name":"Andi Pratama","sku":"SKU-002","qty_ordered":2,"qty_on_hand":3,"reorder_level":10},{"order_id":2,"customer_name":"Budi Sant
+== 1. $ docker compose stop stock-db
+ Container kilatmart-fed-lab-stock-db-1  Stopping
+ Container kilatmart-fed-lab-stock-db-1  Stopped
+== 2. laporan saat stock-db mati (3 panggilan)
+   HTTP 503  4.274587s  {"error":"source_unavailable","source":"stock-db","detail":"IO Error: Failed to connect to MySQL database with parameters \"host=stock-db port=3306 database=inventory user=fed_ro password=***\": Unknown server host 'stock-db' (-5). Attempted host: stock-db"}
+   HTTP 503  4.095726s  {"error":"source_unavailable","source":"stock-db","detail":"IO Error: Failed to connect to MySQL database with parameters \"host=stock-db port=3306 database=inventory user=fed_ro password=***\": Unknown server host 'stock-db' (-2). Attempted host: stock-db"}
+   HTTP 503  4.109349s  {"error":"source_unavailable","source":"stock-db","detail":"IO Error: Failed to connect to MySQL database with parameters \"host=stock-db port=3306 database=inventory user=fed_ro password=***\": Unknown server host 'stock-db' (-2). Attempted host: stock-db"}
+== 3. sisi orders-db tetap hidup: webshop-api
+   GET /orders -> HTTP 200, 12 order
+== 4. $ docker compose start stock-db
+ Container kilatmart-fed-lab-stock-db-1  Starting
+ Container kilatmart-fed-lab-stock-db-1  Started
+== 5. tunggu laporan kembali 200 (poll tiap 1 detik, maksimal 90 detik)
+   pulih setelah sekitar 2 detik, tanpa restart federation
+   HTTP 200  0.142642s  {"query":"low_stock_paid_orders","sources":["orders-db","stock-db"],"row_count":5,"elapsed_ms":134,"rows":[{"order_id":1,"customer_name":"Andi Pratama","sku":"SKU-002","qty_ordered":2,"qty_on_hand":3,"reorder_level":10},{"order_id":2,"customer_name":"Budi Sant
+== 6. kembalikan stok SKU-001 ke 50
+$ PUT http://localhost:8002/stock/SKU-001  qty_on_hand=50
+== selesai

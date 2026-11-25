@@ -1,0 +1,18 @@
+== 0. baseline
+   HTTP 200  0.184984s  {"query":"low_stock_paid_orders","sources":["orders-db","stock-db"],"row_count":4,"elapsed_ms":174,"rows":[{"order_id":1,"customer_name":"Andi Pratama","sku":"SKU-002","qty_ordered":2,"qty_on_hand":3,"reorder_level":10},{"order_id":3,"customer_name":"Citra Les
+== 1. $ docker compose pause stock-db
+ Container kilatmart-fed-lab-stock-db-1  Paused
+== 2. laporan saat stock-db di-pause (curl menunggu maksimal 20 detik)
+   HTTP 504  5.180340s  {"error":"source_timeout","timeout_s":5.0,"source":"stock-db"}
+   HTTP 504  5.177221s  {"error":"source_timeout","timeout_s":5.0,"source":"stock-db"}
+== 3. federation tetap hidup saat satu laporan menggantung
+   GET /health saat laporan menggantung:
+   HTTP 200  0.021595s  {"status":"ok"}
+   laporan yang tadi menggantung:
+   HTTP 504  5.178692s  {"error":"source_timeout","timeout_s":5.0,"source":"stock-db"}
+== 4. $ docker compose unpause stock-db
+ Container kilatmart-fed-lab-stock-db-1  Unpaused
+== 5. tunggu laporan kembali 200 (poll tiap 1 detik, maksimal 60 detik)
+   pulih setelah sekitar 0 detik, tanpa restart federation
+   HTTP 200  0.142978s  {"query":"low_stock_paid_orders","sources":["orders-db","stock-db"],"row_count":4,"elapsed_ms":123,"rows":[{"order_id":1,"customer_name":"Andi Pratama","sku":"SKU-002","qty_ordered":2,"qty_on_hand":3,"reorder_level":10},{"order_id":3,"customer_name":"Citra Les
+== selesai
