@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KilatMart · Laporan analis</title>
+<style>
+  :root {
+    --ink: #1b2430; --muted: #5b6573; --line: #dde1e7; --bg: #f4f5f7; --card: #ffffff;
+    --ok: #1a7f37; --ok-bg: #e6f4ea; --bad: #c0262d; --bad-bg: #fdecec;
+    --warn: #8a5a00; --warn-bg: #fff4d6; --info: #1f5fbf;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 18px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 1120px; margin: 0 auto; padding: 28px 24px 40px; }
+  header { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+  h1 { margin: 0; font-size: 28px; letter-spacing: -0.01em; }
+  .sub { margin: 4px 0 0; color: var(--muted); font-size: 16px; }
+  nav a { color: var(--info); font-size: 15px; margin-left: 16px; text-decoration: none; }
+  nav a:first-child { margin-left: 0; }
+  nav a:hover { text-decoration: underline; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+
+  #status { display: flex; margin-top: 20px; overflow: hidden; }
+  #badge { min-width: 190px; padding: 22px 20px; display: flex; flex-direction: column;
+           justify-content: center; align-items: center; color: #fff; background: var(--muted); }
+  #badge .word { font-size: 40px; font-weight: 800; letter-spacing: 0.04em; line-height: 1; }
+  #badge .tick { margin-top: 8px; font-size: 14px; opacity: .9; }
+  #status.ok #badge { background: var(--ok); }
+  #status.fail #badge { background: var(--bad); }
+  #info { flex: 1; padding: 18px 24px; display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+  #message { font-size: 22px; font-weight: 650; }
+  #meta { color: var(--muted); font-size: 16px; }
+  #changes { display: flex; gap: 8px; flex-wrap: wrap; min-height: 28px; }
+  .chip { padding: 2px 12px; border-radius: 999px; font-size: 15px; font-weight: 650; }
+  .chip.in { background: var(--ok-bg); color: var(--ok); }
+  .chip.out { background: var(--warn-bg); color: var(--warn); }
+
+  #sources { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  .src { padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .src .name { font-weight: 700; font-size: 20px; }
+  .src .engine { color: var(--muted); font-size: 15px; }
+  .pill { padding: 4px 14px; border-radius: 999px; font-size: 15px; font-weight: 700; white-space: nowrap;
+          background: #e8eaee; color: var(--muted); }
+  .pill.up { background: var(--ok-bg); color: var(--ok); }
+  .pill.down { background: var(--bad-bg); color: var(--bad); }
+  .pill.timeout { background: var(--warn-bg); color: var(--warn); }
+
+  #history { margin-top: 16px; padding: 12px 20px; display: flex; align-items: center; gap: 14px; }
+  #history .label { color: var(--muted); font-size: 15px; white-space: nowrap; }
+  #squares { display: flex; gap: 4px; flex-wrap: wrap; }
+  .sq { width: 14px; height: 22px; border-radius: 3px; background: var(--ok); }
+  .sq.fail { background: var(--bad); }
+
+  #result { margin-top: 16px; padding: 8px 8px 12px; }
+  #result h2 { margin: 12px 16px 8px; font-size: 19px; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { padding: 10px 16px; text-align: left; border-bottom: 1px solid var(--line); }
+  th { color: var(--muted); font-size: 14px; font-weight: 650; text-transform: uppercase; letter-spacing: .05em; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr:last-child td { border-bottom: 0; }
+  tr.baru { animation: flash 3.2s ease-out; }
+  @keyframes flash { 0% { background: #fff1a8; } 100% { background: transparent; } }
+  .low { color: var(--bad); font-weight: 700; }
+
+  #errorbox { margin: 8px; padding: 20px 24px; border-radius: 10px; background: var(--bad-bg); color: #7a1218; }
+  #errorbox strong { font-size: 20px; }
+  #errorbox p { margin: 8px 0 0; }
+  #errorbox details { margin-top: 10px; font-size: 14px; color: #5a1a1f; }
+  #errorbox code { display: block; margin-top: 6px; white-space: pre-wrap; word-break: break-word;
+                   font: 13px/1.4 ui-monospace, Consolas, monospace; }
+  .hidden { display: none; }
+  footer { margin-top: 18px; color: var(--muted); font-size: 15px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>Laporan analis KilatMart</h1>
+      <p class="sub">Order berstatus <b>paid</b> yang barangnya sudah di bawah batas reorder. Satu query SQL langsung ke dua database, tanpa salinan data.</p>
+    </div>
+    <nav>
+      <a href="/reports/low-stock-paid-orders" target="_blank">JSON laporan</a>
+      <a href="/reports/low-stock-paid-orders/explain" target="_blank">Rencana eksekusi</a>
+      <a href="/docs" target="_blank">API</a>
+    </nav>
+  </header>
+
+  <section id="status" class="card">
+    <div id="badge"><span class="word">…</span><span class="tick" id="tick">menunggu</span></div>
+    <div id="info">
+      <div id="message">Memanggil laporan</div>
+      <div id="meta"></div>
+      <div id="changes"></div>
+    </div>
+  </section>
+
+  <section id="sources">
+    <div class="card src" data-source="orders-db">
+      <div><div class="name">orders-db</div><div class="engine">PostgreSQL · tabel orders</div></div>
+      <span class="pill">memeriksa</span>
+    </div>
+    <div class="card src" data-source="stock-db">
+      <div><div class="name">stock-db</div><div class="engine">MySQL · tabel stock</div></div>
+      <span class="pill">memeriksa</span>
+    </div>
+  </section>
+
+  <section id="history" class="card">
+    <span class="label">Riwayat pembaruan</span>
+    <div id="squares"></div>
+  </section>
+
+  <section id="result" class="card">
+    <h2 id="resulttitle">Hasil</h2>
+    <div id="errorbox" class="hidden"></div>
+    <table id="table">
+      <thead><tr>
+        <th>Order</th><th>Pelanggan</th><th>SKU</th>
+        <th class="num">Dipesan</th><th class="num">Stok</th><th class="num">Batas reorder</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </section>
+
+  <footer>Setiap pembaruan membuka koneksi baru dan menjalankan ulang query di kedua sumber. Halaman tidak menyimpan data.</footer>
+</main>
+
+<script>
+  const INTERVAL_MS = 2000;
+  const FETCH_TIMEOUT_MS = 15000;
+  const HISTORY_MAX = 40;
+
+  const el = (id) => document.getElementById(id);
+  let previousIds = null;
+  let ticks = 0;
+  const history = [];
+
+  async function getJson(url) {
+    const ctl = new AbortController();
+    const timer = setTimeout(() => ctl.abort(), FETCH_TIMEOUT_MS);
+    try {
+      const resp = await fetch(url, { signal: ctl.signal, cache: "no-store" });
+      let body = null;
+      try { body = await resp.json(); } catch (_) { /* isi bukan JSON */ }
+      return { status: resp.status, body };
+    } catch (_) {
+      return { status: 0, body: null };
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
+  function nowText() { return new Date().toTimeString().slice(0, 8); }
+
+  function describeFailure(report) {
+    const err = report.body && report.body.error;
+    const source = report.body && report.body.source;
+    if (err === "source_unavailable") return `Sumber tidak tersedia: ${source}`;
+    if (err === "source_timeout") {
+      return source ? `Sumber menggantung (lewat ${report.body.timeout_s} detik): ${source}`
+                    : `Query melewati batas ${report.body.timeout_s} detik`;
+    }
+    if (err === "query_failed") return "Query gagal dijalankan";
+    return "Federation tidak menjawab";
+  }
+
+  function renderRows(rows) {
+    const tbody = el("rows");
+    tbody.replaceChildren();
+    const ids = new Set(rows.map((r) => r.order_id));
+    for (const r of rows) {
+      const tr = document.createElement("tr");
+      if (previousIds && !previousIds.has(r.order_id)) tr.className = "baru";
+      const cells = [
+        [`#${r.order_id}`, ""], [r.customer_name, ""], [r.sku, ""],
+        [r.qty_ordered, "num"], [r.qty_on_hand, "num low"], [r.reorder_level, "num"],
+      ];
+      for (const [text, cls] of cells) {
+        const td = document.createElement("td");
+        td.textContent = text;
+        if (cls) td.className = cls;
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    }
+    return ids;
+  }
+
+  function renderChanges(ids) {
+    const box = el("changes");
+    box.replaceChildren();
+    if (!previousIds) return;
+    const add = (text, cls) => {
+      const s = document.createElement("span");
+      s.className = `chip ${cls}`;
+      s.textContent = text;
+      box.appendChild(s);
+    };
+    for (const id of ids) if (!previousIds.has(id)) add(`+ order #${id} masuk laporan`, "in");
+    for (const id of previousIds) if (!ids.has(id)) add(`− order #${id} keluar dari laporan`, "out");
+  }
+
+  function renderSources(src) {
+    const byName = {};
+    if (src.status === 200 && src.body) for (const s of src.body.sources) byName[s.source] = s;
+    const label = { up: "TERHUBUNG", down: "MATI", timeout: "MENGGANTUNG" };
+    document.querySelectorAll(".src").forEach((card) => {
+      const s = byName[card.dataset.source];
+      const pill = card.querySelector(".pill");
+      pill.className = "pill" + (s ? ` ${s.status}` : "");
+      pill.textContent = s ? `${label[s.status]} · ${s.elapsed_ms} ms` : "tidak diketahui";
+    });
+  }
+
+  function renderHistory(ok) {
+    history.push(ok);
+    if (history.length > HISTORY_MAX) history.shift();
+    el("squares").replaceChildren(...history.map((good) => {
+      const d = document.createElement("div");
+      d.className = good ? "sq" : "sq fail";
+      return d;
+    }));
+  }
+
+  function render(report, src) {
+    ticks += 1;
+    const ok = report.status === 200 && report.body;
+    el("status").className = `card ${ok ? "ok" : "fail"}`;
+    el("badge").querySelector(".word").textContent = ok ? "OK" : "GAGAL";
+    el("tick").textContent = `pembaruan #${ticks}`;
+    renderSources(src);
+    renderHistory(!!ok);
+
+    if (ok) {
+      const data = report.body;
+      el("message").textContent = `${data.row_count} order perlu perhatian`;
+      el("meta").textContent = `${nowText()} · ${data.elapsed_ms} ms · sumber: ${data.sources.join(", ")}`;
+      el("errorbox").className = "hidden";
+      el("table").className = "";
+      el("resulttitle").textContent = "Order paid dengan stok di batas reorder atau lebih rendah";
+      const ids = renderRows(data.rows);
+      renderChanges(ids);
+      previousIds = ids;
+    } else {
+      el("message").textContent = describeFailure(report);
+      el("meta").textContent = `${nowText()} · HTTP ${report.status || "tanpa jawaban"} · tanpa hasil sebagian`;
+      el("changes").replaceChildren();
+      el("table").className = "hidden";
+      el("resulttitle").textContent = "Hasil";
+      const box = el("errorbox");
+      box.className = "";
+      box.replaceChildren();
+      const strong = document.createElement("strong");
+      strong.textContent = describeFailure(report);
+      const p = document.createElement("p");
+      p.textContent = "Tidak ada tabel yang ditampilkan: tanpa salinan, laporan ikut gagal bersama sumbernya. Pulih sendiri begitu sumber menyala.";
+      box.append(strong, p);
+      const detail = report.body && report.body.detail;
+      if (detail) {
+        const d = document.createElement("details");
+        const s = document.createElement("summary");
+        s.textContent = "Pesan dari driver";
+        const c = document.createElement("code");
+        c.textContent = detail;
+        d.append(s, c);
+        box.appendChild(d);
+      }
+    }
+  }
+
+  async function tick() {
+    const [report, src] = await Promise.all([
+      getJson("/reports/low-stock-paid-orders"),
+      getJson("/health/sources"),
+    ]);
+    render(report, src);
+    setTimeout(tick, INTERVAL_MS);
+  }
+  tick();
+</script>
+</body>
+</html>
