@@ -41,3 +41,51 @@ services:
       interval: 5s
       timeout: 5s
       retries: 20
+
+  webshop-api:
+    build: ./services/webshop-api
+    environment:
+      ORDERS_DB_HOST: orders-db
+      ORDERS_DB_PORT: "5432"
+      ORDERS_DB_NAME: shop
+      APP_DB_USER: kilat
+      APP_DB_PASSWORD: kilat_pw
+    ports:
+      - "127.0.0.1:8001:8000"
+    depends_on:
+      orders-db:
+        condition: service_healthy
+
+  inventory-api:
+    build: ./services/inventory-api
+    environment:
+      STOCK_DB_HOST: stock-db
+      STOCK_DB_PORT: "3306"
+      STOCK_DB_NAME: inventory
+      APP_DB_USER: kilat
+      APP_DB_PASSWORD: kilat_pw
+    ports:
+      - "127.0.0.1:8002:8000"
+    depends_on:
+      stock-db:
+        condition: service_healthy
+
+  federation:
+    build: ./services/federation
+    environment:
+      ORDERS_DB_HOST: orders-db
+      ORDERS_DB_PORT: "5432"
+      ORDERS_DB_NAME: shop
+      STOCK_DB_HOST: stock-db
+      STOCK_DB_PORT: "3306"
+      STOCK_DB_NAME: inventory
+      FED_DB_USER: fed_ro
+      FED_DB_PASSWORD: fed_ro_pw
+      QUERY_TIMEOUT_S: "5"
+    ports:
+      - "127.0.0.1:8003:8000"
+    depends_on:
+      orders-db:
+        condition: service_healthy
+      stock-db:
+        condition: service_healthy
