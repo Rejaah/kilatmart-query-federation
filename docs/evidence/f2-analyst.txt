@@ -1,0 +1,7 @@
+analyst: GET http://localhost:8003/reports/low-stock-paid-orders tiap 2s (Ctrl+C untuk berhenti)
+17:34:18  [32mOK   [0m  4 baris  128 ms  [orders-db, stock-db]  order: 1,3,4,10
+17:34:20  [32mOK   [0m  4 baris  114 ms  [orders-db, stock-db]  order: 1,3,4,10
+17:34:23  [31mGAGAL[0m  source_timeout  sumber: stock-db  (HTTP 504, tanpa hasil parsial)
+17:34:30  [31mGAGAL[0m  source_timeout  sumber: stock-db  (HTTP 504, tanpa hasil parsial)
+17:34:37  [32mOK   [0m  4 baris  963 ms  [orders-db, stock-db]  order: 1,3,4,10
+17:34:41  [32mOK   [0m  4 baris  128 ms  [orders-db, stock-db]  order: 1,3,4,10

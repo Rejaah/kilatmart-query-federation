@@ -1,0 +1,353 @@
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=134
+federation-1  | INFO:     172.19.0.1:43950 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=120
+federation-1  | INFO:     172.19.0.1:43958 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=125
+federation-1  | INFO:     172.19.0.1:36644 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=130
+federation-1  | INFO:     172.19.0.1:36648 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=129
+federation-1  | INFO:     172.19.0.1:36660 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=114
+federation-1  | INFO:     172.19.0.1:36674 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=118
+federation-1  | INFO:     172.19.0.1:36682 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=103
+federation-1  | INFO:     172.19.0.1:48326 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=109
+federation-1  | INFO:     172.19.0.1:48336 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=119
+federation-1  | INFO:     172.19.0.1:48352 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=113
+federation-1  | INFO:     172.19.0.1:48362 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=118
+federation-1  | INFO:     172.19.0.1:34614 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=140
+federation-1  | INFO:     172.19.0.1:34618 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=120
+federation-1  | INFO:     172.19.0.1:34628 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=111
+federation-1  | INFO:     172.19.0.1:34642 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=110
+federation-1  | INFO:     172.19.0.1:34656 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=189
+federation-1  | INFO:     172.19.0.1:36604 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=154
+federation-1  | INFO:     172.19.0.1:36614 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=120
+federation-1  | INFO:     172.19.0.1:36616 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=139
+federation-1  | INFO:     172.19.0.1:36622 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=116
+federation-1  | INFO:     172.19.0.1:36634 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=124
+federation-1  | INFO:     172.19.0.1:52230 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=111
+federation-1  | INFO:     172.19.0.1:52238 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=116
+federation-1  | INFO:     172.19.0.1:52250 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=113
+federation-1  | INFO:     172.19.0.1:52258 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=107
+federation-1  | INFO:     172.19.0.1:58888 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=120
+federation-1  | INFO:     172.19.0.1:58892 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=105
+federation-1  | INFO:     172.19.0.1:58904 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=125
+federation-1  | INFO:     172.19.0.1:58920 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=114
+federation-1  | INFO:     172.19.0.1:58924 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=125
+federation-1  | INFO:     172.19.0.1:40020 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=107
+federation-1  | INFO:     172.19.0.1:40026 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=111
+federation-1  | INFO:     172.19.0.1:40034 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=108
+federation-1  | INFO:     172.19.0.1:40038 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=126
+federation-1  | INFO:     172.19.0.1:40044 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=108
+federation-1  | INFO:     172.19.0.1:36102 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=119
+federation-1  | INFO:     172.19.0.1:36116 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=122
+federation-1  | INFO:     172.19.0.1:36120 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=112
+federation-1  | INFO:     172.19.0.1:36132 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=130
+federation-1  | INFO:     172.19.0.1:45116 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=116
+federation-1  | INFO:     172.19.0.1:45120 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=117
+federation-1  | INFO:     172.19.0.1:45130 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=117
+federation-1  | INFO:     172.19.0.1:45142 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=111
+federation-1  | INFO:     172.19.0.1:45156 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=117
+federation-1  | INFO:     172.19.0.1:39582 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=146
+federation-1  | INFO:     172.19.0.1:39594 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=130
+federation-1  | INFO:     172.19.0.1:39596 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=122
+federation-1  | INFO:     172.19.0.1:39608 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=147
+federation-1  | INFO:     172.19.0.1:39624 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=116
+federation-1  | INFO:     172.19.0.1:60816 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=112
+federation-1  | INFO:     172.19.0.1:60832 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=116
+federation-1  | INFO:     172.19.0.1:60840 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=119
+federation-1  | INFO:     172.19.0.1:60848 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=121
+federation-1  | INFO:     172.19.0.1:35930 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=107
+federation-1  | INFO:     172.19.0.1:35944 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=113
+federation-1  | INFO:     172.19.0.1:35960 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=127
+federation-1  | INFO:     172.19.0.1:35972 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=139
+federation-1  | INFO:     172.19.0.1:35976 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=124
+federation-1  | INFO:     172.19.0.1:44126 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=101
+federation-1  | INFO:     172.19.0.1:44140 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=129
+federation-1  | INFO:     172.19.0.1:44152 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=112
+federation-1  | INFO:     172.19.0.1:44154 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=108
+federation-1  | INFO:     172.19.0.1:44166 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=107
+federation-1  | INFO:     172.19.0.1:57746 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=119
+federation-1  | INFO:     172.19.0.1:57756 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=103
+federation-1  | INFO:     172.19.0.1:57758 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=123
+federation-1  | INFO:     172.19.0.1:57774 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=105
+federation-1  | INFO:     172.19.0.1:33426 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=122
+federation-1  | INFO:     172.19.0.1:33440 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=109
+federation-1  | INFO:     172.19.0.1:33444 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=124
+federation-1  | INFO:     172.19.0.1:33454 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=118
+federation-1  | INFO:     172.19.0.1:33456 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=115
+federation-1  | INFO:     172.19.0.1:55862 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=108
+federation-1  | INFO:     172.19.0.1:55866 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=114
+federation-1  | INFO:     172.19.0.1:55880 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=160
+federation-1  | INFO:     172.19.0.1:55886 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=116
+federation-1  | INFO:     172.19.0.1:55888 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=113
+federation-1  | INFO:     172.19.0.1:35292 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=119
+federation-1  | INFO:     172.19.0.1:35308 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=129
+federation-1  | INFO:     172.19.0.1:35320 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=120
+federation-1  | INFO:     172.19.0.1:35330 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=113
+federation-1  | INFO:     172.19.0.1:33200 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=116
+federation-1  | INFO:     172.19.0.1:33216 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=105
+federation-1  | INFO:     172.19.0.1:33232 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=166
+federation-1  | INFO:     172.19.0.1:33242 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=110
+federation-1  | INFO:     172.19.0.1:33252 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=118
+federation-1  | INFO:     172.19.0.1:45688 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=118
+federation-1  | INFO:     172.19.0.1:45694 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=103
+federation-1  | INFO:     172.19.0.1:45704 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=115
+federation-1  | INFO:     172.19.0.1:45706 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=122
+federation-1  | INFO:     172.19.0.1:60224 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=204
+federation-1  | INFO:     172.19.0.1:60226 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=123
+federation-1  | INFO:     172.19.0.1:60238 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=154
+federation-1  | INFO:     172.19.0.1:60240 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=116
+federation-1  | INFO:     172.19.0.1:60248 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=135
+federation-1  | INFO:     172.19.0.1:38064 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=123
+federation-1  | INFO:     172.19.0.1:38068 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=110
+federation-1  | INFO:     172.19.0.1:38074 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=113
+federation-1  | INFO:     172.19.0.1:38086 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=109
+federation-1  | INFO:     172.19.0.1:38094 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=149
+federation-1  | INFO:     172.19.0.1:57290 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=120
+federation-1  | INFO:     172.19.0.1:57296 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=142
+federation-1  | INFO:     172.19.0.1:57312 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=140
+federation-1  | INFO:     172.19.0.1:57314 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=121
+federation-1  | INFO:     172.19.0.1:55874 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=110
+federation-1  | INFO:     172.19.0.1:55880 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=128
+federation-1  | INFO:     172.19.0.1:55884 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=184
+federation-1  | INFO:     172.19.0.1:55894 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=195
+federation-1  | INFO:     172.19.0.1:55898 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=142
+federation-1  | INFO:     172.19.0.1:55912 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=121
+federation-1  | INFO:     172.19.0.1:55916 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=5 elapsed_ms=135
+federation-1  | INFO:     172.19.0.1:43514 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=5 elapsed_ms=146
+federation-1  | INFO:     172.19.0.1:43528 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | ERROR federation report=low_stock error=source_unavailable source=stock-db
+federation-1  | INFO:     172.19.0.1:43540 - "GET /reports/low-stock-paid-orders HTTP/1.1" 503 Service Unavailable
+federation-1  | ERROR federation report=low_stock error=source_unavailable source=stock-db
+federation-1  | INFO:     172.19.0.1:43548 - "GET /reports/low-stock-paid-orders HTTP/1.1" 503 Service Unavailable
+federation-1  | ERROR federation report=low_stock error=source_unavailable source=stock-db
+federation-1  | INFO:     172.19.0.1:43562 - "GET /reports/low-stock-paid-orders HTTP/1.1" 503 Service Unavailable
+federation-1  | ERROR federation report=low_stock error=source_unavailable source=stock-db
+federation-1  | INFO:     172.19.0.1:43576 - "GET /reports/low-stock-paid-orders HTTP/1.1" 503 Service Unavailable
+federation-1  | ERROR federation report=low_stock error=source_unavailable source=stock-db
+federation-1  | INFO:     172.19.0.1:43578 - "GET /reports/low-stock-paid-orders HTTP/1.1" 503 Service Unavailable
+federation-1  | ERROR federation report=low_stock error=source_unavailable source=stock-db
+federation-1  | INFO:     172.19.0.1:43582 - "GET /reports/low-stock-paid-orders HTTP/1.1" 503 Service Unavailable
+federation-1  | ERROR federation report=low_stock error=source_unavailable source=stock-db
+federation-1  | INFO:     172.19.0.1:47832 - "GET /reports/low-stock-paid-orders HTTP/1.1" 503 Service Unavailable
+federation-1  | ERROR federation report=low_stock error=source_unavailable source=stock-db
+federation-1  | INFO:     172.19.0.1:47840 - "GET /reports/low-stock-paid-orders HTTP/1.1" 503 Service Unavailable
+federation-1  | ERROR federation report=low_stock error=source_unavailable source=stock-db
+federation-1  | INFO:     172.19.0.1:47870 - "GET /reports/low-stock-paid-orders HTTP/1.1" 503 Service Unavailable
+federation-1  | ERROR federation report=low_stock error=source_unavailable source=stock-db
+federation-1  | INFO:     172.19.0.1:47874 - "GET /reports/low-stock-paid-orders HTTP/1.1" 503 Service Unavailable
+federation-1  | INFO federation report=low_stock rows=5 elapsed_ms=148
+federation-1  | INFO:     172.19.0.1:47876 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=5 elapsed_ms=134
+federation-1  | INFO:     172.19.0.1:47888 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=109
+federation-1  | INFO:     172.19.0.1:47902 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | ERROR federation report=low_stock error=source_unavailable source=stock-db
+federation-1  | INFO:     172.19.0.1:47854 - "GET /reports/low-stock-paid-orders HTTP/1.1" 503 Service Unavailable
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=127
+federation-1  | INFO:     172.19.0.1:43976 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=157
+federation-1  | INFO:     172.19.0.1:43978 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=119
+federation-1  | INFO:     172.19.0.1:43988 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=113
+federation-1  | INFO:     172.19.0.1:44000 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=121
+federation-1  | INFO:     172.19.0.1:44008 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=115
+federation-1  | INFO:     172.19.0.1:58848 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=116
+federation-1  | INFO:     172.19.0.1:58858 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=171
+federation-1  | INFO:     172.19.0.1:58868 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=158
+federation-1  | INFO:     172.19.0.1:58874 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=123
+federation-1  | INFO:     172.19.0.1:58880 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=128
+federation-1  | INFO:     172.19.0.1:46068 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=111
+federation-1  | INFO:     172.19.0.1:46080 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=121
+federation-1  | INFO:     172.19.0.1:46082 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=118
+federation-1  | INFO:     172.19.0.1:46096 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=169
+federation-1  | INFO:     172.19.0.1:46098 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=123
+federation-1  | INFO:     172.19.0.1:32780 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=142
+federation-1  | INFO:     172.19.0.1:32784 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=114
+federation-1  | INFO:     172.19.0.1:32798 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=116
+federation-1  | INFO:     172.19.0.1:32804 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=111
+federation-1  | INFO:     172.19.0.1:59602 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=122
+federation-1  | INFO:     172.19.0.1:59610 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=142
+federation-1  | INFO:     172.19.0.1:59612 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | ERROR federation report=low_stock error=source_unavailable source=stock-db
+federation-1  | INFO:     172.19.0.1:59614 - "GET /reports/low-stock-paid-orders HTTP/1.1" 503 Service Unavailable
+federation-1  | ERROR federation report=low_stock error=source_unavailable source=stock-db
+federation-1  | INFO:     172.19.0.1:59630 - "GET /reports/low-stock-paid-orders HTTP/1.1" 503 Service Unavailable
+federation-1  | ERROR federation report=low_stock error=source_unavailable source=stock-db
+federation-1  | INFO:     172.19.0.1:53406 - "GET /reports/low-stock-paid-orders HTTP/1.1" 503 Service Unavailable
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=118
+federation-1  | INFO:     172.19.0.1:33990 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=116
+federation-1  | INFO:     172.19.0.1:34000 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=124
+federation-1  | INFO:     172.19.0.1:34008 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=147
+federation-1  | INFO:     172.19.0.1:34020 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=119
+federation-1  | INFO:     172.19.0.1:34022 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=128
+federation-1  | INFO:     172.19.0.1:34028 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=113
+federation-1  | INFO:     172.19.0.1:34044 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=114
+federation-1  | INFO:     172.19.0.1:49944 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=122
+federation-1  | INFO:     172.19.0.1:49952 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=174
+federation-1  | INFO:     172.19.0.1:49968 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | ERROR federation report=low_stock error=source_timeout source=stock-db timeout_s=5.0
+federation-1  | INFO:     172.19.0.1:49972 - "GET /reports/low-stock-paid-orders HTTP/1.1" 504 Gateway Timeout
+federation-1  | ERROR federation report=low_stock error=source_timeout source=stock-db timeout_s=5.0
+federation-1  | INFO:     172.19.0.1:49976 - "GET /reports/low-stock-paid-orders HTTP/1.1" 504 Gateway Timeout
+federation-1  | ERROR federation report=low_stock error=source_timeout source=stock-db timeout_s=5.0
+federation-1  | INFO:     172.19.0.1:49988 - "GET /reports/low-stock-paid-orders HTTP/1.1" 504 Gateway Timeout
+federation-1  | ERROR federation report=low_stock error=source_timeout source=stock-db timeout_s=5.0
+federation-1  | INFO:     172.19.0.1:50000 - "GET /reports/low-stock-paid-orders HTTP/1.1" 504 Gateway Timeout
+federation-1  | INFO:     172.19.0.1:50938 - "GET /health HTTP/1.1" 200 OK
+federation-1  | ERROR federation report=low_stock error=source_timeout source=stock-db timeout_s=5.0
+federation-1  | INFO:     172.19.0.1:50912 - "GET /reports/low-stock-paid-orders HTTP/1.1" 504 Gateway Timeout
+federation-1  | ERROR federation report=low_stock error=source_timeout source=stock-db timeout_s=5.0
+federation-1  | INFO:     172.19.0.1:50920 - "GET /reports/low-stock-paid-orders HTTP/1.1" 504 Gateway Timeout
+federation-1  | ERROR federation report=low_stock error=source_timeout source=stock-db timeout_s=5.0
+federation-1  | INFO:     172.19.0.1:50936 - "GET /reports/low-stock-paid-orders HTTP/1.1" 504 Gateway Timeout
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=635
+federation-1  | INFO:     172.19.0.1:50958 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=963
+federation-1  | INFO:     172.19.0.1:50942 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=177
+federation-1  | INFO:     172.19.0.1:50972 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=123
+federation-1  | INFO:     172.19.0.1:50976 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=110
+federation-1  | INFO:     172.19.0.1:37496 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=128
+federation-1  | INFO:     172.19.0.1:37498 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
+federation-1  | INFO federation report=low_stock rows=4 elapsed_ms=122
+federation-1  | INFO:     172.19.0.1:37500 - "GET /reports/low-stock-paid-orders HTTP/1.1" 200 OK
