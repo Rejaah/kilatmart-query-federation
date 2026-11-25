@@ -1,0 +1,108 @@
+x-api-healthcheck: &api-healthcheck
+  test:
+    - CMD
+    - python
+    - -c
+    - |-
+      from urllib.request import urlopen
+      urlopen('http://127.0.0.1:8000/health', timeout=2).close()
+  interval: 5s
+  timeout: 3s
+  retries: 5
+
+services:
+  orders-db:
+    image: postgres:16.10
+    command: ["postgres", "-c", "log_statement=all", "-c", "log_line_prefix=%m user=%u "]
+    environment:
+      POSTGRES_DB: shop
+      POSTGRES_USER: kilat
+      POSTGRES_PASSWORD: kilat_pw
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - ./db/orders/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          PGPASSWORD="$${POSTGRES_PASSWORD}" psql -h 127.0.0.1
+          -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}" -v ON_ERROR_STOP=1
+          -c 'SELECT 1 FROM orders LIMIT 1'
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  stock-db:
+    image: mysql:8.0.43
+    command: ["--general-log=ON", "--general-log-file=/tmp/general.log"]
+    environment:
+      MYSQL_ROOT_PASSWORD: root_pw
+      MYSQL_DATABASE: inventory
+      MYSQL_USER: kilat
+      MYSQL_PASSWORD: kilat_pw
+    ports:
+      - "127.0.0.1:3307:3306"
+    volumes:
+      - ./db/stock/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          MYSQL_PWD="$${MYSQL_PASSWORD}" mysql -h 127.0.0.1
+          -u "$${MYSQL_USER}" -D "$${MYSQL_DATABASE}"
+          -e 'SELECT 1 FROM stock LIMIT 1'
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  webshop-api:
+    build: ./services/webshop-api
+    environment:
+      ORDERS_DB_HOST: orders-db
+      ORDERS_DB_PORT: "5432"
+      ORDERS_DB_NAME: shop
+      APP_DB_USER: kilat
+      APP_DB_PASSWORD: kilat_pw
+    ports:
+      - "127.0.0.1:8001:8000"
+    healthcheck: *api-healthcheck
+    depends_on:
+      orders-db:
+        condition: service_healthy
+
+  inventory-api:
+    build: ./services/inventory-api
+    environment:
+      STOCK_DB_HOST: stock-db
+      STOCK_DB_PORT: "3306"
+      STOCK_DB_NAME: inventory
+      APP_DB_USER: kilat
+      APP_DB_PASSWORD: kilat_pw
+    ports:
+      - "127.0.0.1:8002:8000"
+    healthcheck: *api-healthcheck
+    depends_on:
+      stock-db:
+        condition: service_healthy
+
+  federation:
+    build: ./services/federation
+    environment:
+      ORDERS_DB_HOST: orders-db
+      ORDERS_DB_PORT: "5432"
+      ORDERS_DB_NAME: shop
+      STOCK_DB_HOST: stock-db
+      STOCK_DB_PORT: "3306"
+      STOCK_DB_NAME: inventory
+      FED_DB_USER: fed_ro
+      FED_DB_PASSWORD: fed_ro_pw
+      QUERY_TIMEOUT_S: "5"
+    ports:
+      - "127.0.0.1:8003:8000"
+    healthcheck: *api-healthcheck
+    depends_on:
+      orders-db:
+        condition: service_healthy
+      stock-db:
+        condition: service_healthy
