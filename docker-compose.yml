@@ -1,0 +1,23 @@
+services:
+  orders-db:
+    image: postgres:16.10
+    environment:
+      POSTGRES_DB: shop
+      POSTGRES_USER: kilat
+      POSTGRES_PASSWORD: kilat_pw
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - ./db/orders/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+  stock-db:
+    image: mysql:8.0.43
+    environment:
+      MYSQL_ROOT_PASSWORD: root_pw
+      MYSQL_DATABASE: inventory
+      MYSQL_USER: kilat
+      MYSQL_PASSWORD: kilat_pw
+    ports:
+      - "127.0.0.1:3307:3306"
+    volumes:
+      - ./db/stock/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
