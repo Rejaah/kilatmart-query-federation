@@ -39,7 +39,7 @@ Untuk mengembalikan data demo ke seed, jalankan `docker compose down --volumes`,
      -H 'Content-Type: application/json' -d '{"qty_on_hand":50}'
    ```
 
-3. Hentikan MySQL dan panggil laporan lagi. Respons yang diharapkan adalah HTTP 503 dengan `error` bernilai `source_unavailable` dan `source` bernilai `stock-db`. Nyalakan kembali MySQL, tunggu hingga sehat, lalu cek bahwa laporan kembali menampilkan 4 baris.
+3. Hentikan MySQL dan panggil laporan lagi. Respons menyebut `stock-db` sebagai sumber yang gagal. Federation mengembalikan HTTP 503 (`source_unavailable`) jika koneksi langsung gagal, atau HTTP 504 (`source_timeout`) jika pencarian alamat atau koneksi melewati batas waktu. Nyalakan kembali MySQL, tunggu hingga sehat, lalu cek bahwa laporan kembali menampilkan 4 baris.
 
    ```bash
    docker compose stop stock-db
