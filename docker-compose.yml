@@ -9,6 +9,16 @@ services:
       - "127.0.0.1:5433:5432"
     volumes:
       - ./db/orders/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          PGPASSWORD="$${POSTGRES_PASSWORD}" psql -h 127.0.0.1
+          -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}" -v ON_ERROR_STOP=1
+          -c 'SELECT 1 FROM orders LIMIT 1'
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   stock-db:
     image: mysql:8.0.43
@@ -21,3 +31,13 @@ services:
       - "127.0.0.1:3307:3306"
     volumes:
       - ./db/stock/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          MYSQL_PWD="$${MYSQL_PASSWORD}" mysql -h 127.0.0.1
+          -u "$${MYSQL_USER}" -D "$${MYSQL_DATABASE}"
+          -e 'SELECT 1 FROM stock LIMIT 1'
+      interval: 5s
+      timeout: 5s
+      retries: 20
