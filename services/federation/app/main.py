@@ -4,7 +4,10 @@ import sys
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
-from app.federation import QueryFailed, QueryTimeout, SourceUnavailable, run_report
+from app.federation import (
+    QueryFailed, QueryTimeout, SourceUnavailable,
+    check_sources, run_report,
+)
 
 logging.basicConfig(level=logging.INFO, stream=sys.stdout,
                     format="%(levelname)s %(name)s %(message)s")
@@ -37,6 +40,11 @@ async def on_query_failed(request: Request, exc: QueryFailed):
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+
+@app.get("/health/sources")
+def health_sources():
+    return check_sources()
 
 
 @app.get("/reports/low-stock-paid-orders")

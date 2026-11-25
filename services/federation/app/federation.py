@@ -108,3 +108,45 @@ def run_report(name):
         "elapsed_ms": round((time.perf_counter() - started) * 1000),
         "rows": rows,
     }
+
+
+def _check_one(source, alias, kind, dsn, out):
+    started = time.perf_counter()
+    con = duckdb.connect()
+    out["con"] = con
+    try:
+        con.execute(f"LOAD {kind}")
+        _attach(con, source, alias, kind, dsn)
+        out["status"], out["detail"] = "up", None
+    except SourceUnavailable as exc:
+        out["status"], out["detail"] = "down", exc.detail
+    except duckdb.Error as exc:
+        out["status"], out["detail"] = "down", str(exc)
+    finally:
+        out["elapsed_ms"] = round((time.perf_counter() - started) * 1000)
+        con.close()
+
+
+def check_sources():
+    """Coba ATTACH tiap sumber secara paralel. Status: up, down, atau timeout."""
+    jobs = []
+    for source, alias, kind, dsn in SOURCES:
+        out = {
+            "source": source, "status": "timeout", "con": None,
+            "detail": f"tidak menjawab dalam {TIMEOUT_S:g} detik",
+            "elapsed_ms": round(TIMEOUT_S * 1000),
+        }
+        worker = threading.Thread(target=_check_one, args=(source, alias, kind, dsn, out), daemon=True)
+        worker.start()
+        jobs.append((worker, out))
+
+    deadline = time.perf_counter() + TIMEOUT_S
+    sources = []
+    for worker, out in jobs:
+        worker.join(max(0.0, deadline - time.perf_counter()))
+        if worker.is_alive() and out["con"] is not None:
+            out["con"].interrupt()
+        sources.append({k: out[k] for k in ("source", "status", "detail", "elapsed_ms")})
+
+    all_up = all(s["status"] == "up" for s in sources)
+    return {"status": "ok" if all_up else "degraded", "sources": sources}
