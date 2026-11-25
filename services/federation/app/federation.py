@@ -30,8 +30,30 @@ SOURCES = [
 ]
 
 
+class SourceUnavailable(Exception):
+    def __init__(self, source, detail):
+        super().__init__(detail)
+        self.source = source
+        self.detail = detail
+
+
+class QueryTimeout(Exception):
+    def __init__(self, timeout_s, source):
+        super().__init__(f"timeout after {timeout_s}s")
+        self.timeout_s = timeout_s
+        self.source = source
+
+
+class QueryFailed(Exception):
+    pass
+
+
 def _attach(con, source, alias, kind, dsn):
-    con.execute(f"ATTACH '{dsn}' AS {alias} (TYPE {kind}, READ_ONLY)")
+    try:
+        con.execute(f"ATTACH '{dsn}' AS {alias} (TYPE {kind}, READ_ONLY)")
+    except duckdb.Error as exc:
+        # pesan DuckDB memuat connection string, jadi password disamarkan
+        raise SourceUnavailable(source, str(exc).replace(FED_PASSWORD, "***")) from exc
 
 
 def _work(sql, state):
@@ -47,8 +69,10 @@ def _work(sql, state):
         cur = con.execute(sql)
         cols = [c[0] for c in cur.description]
         state["result"] = [dict(zip(cols, row)) for row in cur.fetchall()]
-    except duckdb.Error as exc:
+    except SourceUnavailable as exc:
         state["error"] = exc
+    except duckdb.Error as exc:
+        state["error"] = QueryFailed(str(exc))
     finally:
         con.close()
 
@@ -64,7 +88,7 @@ def _execute(sql):
     if worker.is_alive():
         if state["con"] is not None:
             state["con"].interrupt()
-        raise TimeoutError(f"timeout after {TIMEOUT_S}s")
+        raise QueryTimeout(TIMEOUT_S, state["stage"])
     if state["error"] is not None:
         raise state["error"]
     return state["result"]
