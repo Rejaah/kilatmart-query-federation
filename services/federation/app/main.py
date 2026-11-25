@@ -2,11 +2,11 @@ import logging
 import sys
 
 from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, PlainTextResponse
 
 from app.federation import (
     QueryFailed, QueryTimeout, SourceUnavailable,
-    check_sources, run_report,
+    check_sources, explain_report, run_report,
 )
 
 logging.basicConfig(level=logging.INFO, stream=sys.stdout,
@@ -53,3 +53,8 @@ def low_stock_paid_orders():
     log.info("report=low_stock rows=%d elapsed_ms=%d",
              result["row_count"], result["elapsed_ms"])
     return result
+
+
+@app.get("/reports/low-stock-paid-orders/explain", response_class=PlainTextResponse)
+def low_stock_paid_orders_explain():
+    return explain_report("low_stock_paid_orders")

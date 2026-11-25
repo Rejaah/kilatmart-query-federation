@@ -110,6 +110,11 @@ def run_report(name):
     }
 
 
+def explain_report(name):
+    rows = _execute("EXPLAIN " + _read_sql(name))
+    return "\n".join(row["explain_value"] for row in rows)
+
+
 def _check_one(source, alias, kind, dsn, out):
     started = time.perf_counter()
     con = duckdb.connect()
