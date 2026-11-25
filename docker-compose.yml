@@ -1,6 +1,7 @@
 services:
   orders-db:
     image: postgres:16.10
+    command: ["postgres", "-c", "log_statement=all", "-c", "log_line_prefix=%m user=%u "]
     environment:
       POSTGRES_DB: shop
       POSTGRES_USER: kilat
@@ -22,6 +23,7 @@ services:
 
   stock-db:
     image: mysql:8.0.43
+    command: ["--general-log=ON", "--general-log-file=/tmp/general.log"]
     environment:
       MYSQL_ROOT_PASSWORD: root_pw
       MYSQL_DATABASE: inventory
