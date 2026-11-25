@@ -46,3 +46,7 @@ Siapkan dengan `docker compose up -d --build --wait`, lalu susun layar tiga pane
 | 2:30 - 3:00 | Enter keempat: `stock-db` dinyalakan, halaman kembali OK tanpa restart `federation` |
 
 Alternatif: `bash scripts/analyst.sh` menampilkan hal yang sama di terminal, dan `bash scripts/demo_freshness.sh` menjalankan bagian kesegaran data saja tanpa menunggu Enter.
+
+## Video cadangan
+
+Jika demo langsung tidak dapat dijalankan, gunakan [walkthrough slide](demo-video.mp4). Video ini menampilkan alur query federation, perubahan data, respons saat sumber berhenti, dan batasan alat. Jalankan demo langsung untuk melihat respons layanan dan log database.
