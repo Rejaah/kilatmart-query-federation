@@ -14,7 +14,7 @@ Latihan kelompok IF4052 Service Computing. DuckDB membaca kedua sumber saat lapo
 
 ## Mulai cepat
 
-Jalankan dari root repo setelah layanan Federation digabungkan.
+Jalankan dari root repo.
 
 ```bash
 docker compose up --build -d --wait
@@ -22,9 +22,7 @@ docker compose ps
 curl -fsS --retry 5 --retry-connrefused http://localhost:8003/reports/low-stock-paid-orders
 ```
 
-Pada data awal, laporan mengembalikan `row_count` sebesar `4` dengan `order_id` 1, 3, 4, dan 10. Halaman analis tersedia di <http://localhost:8003/> setelah halaman tersebut digabungkan.
-
-Untuk menguji database dan API sumber saat layanan Federation masih dikerjakan, jalankan `docker compose up --build -d --wait webshop-api inventory-api`. Kedua database akan ikut dimulai dan menunggu hingga tabel dari `init.sql` bisa dibaca.
+Pada data awal, laporan mengembalikan `row_count` sebesar `4` dengan `order_id` 1, 3, 4, dan 10. Halaman analis tersedia di <http://localhost:8003/>.
 
 Untuk mengembalikan data demo ke seed, jalankan `docker compose down --volumes`, lalu ulangi langkah mulai cepat. Opsi `--volumes` menghapus data database stack ini, termasuk perubahan selama demo.
 
@@ -58,6 +56,8 @@ Untuk mengembalikan data demo ke seed, jalankan `docker compose down --volumes`,
    curl -fsS http://localhost:8003/reports/low-stock-paid-orders
    ```
 
+Untuk demo tiga menit, buka halaman analis di <http://localhost:8003/> lalu jalankan `bash scripts/demo.sh` (tiap langkah menunggu Enter). `bash scripts/analyst.sh` menampilkan laporan yang sama di terminal. Langkah lengkap dan jadwalnya ada di [`docs/demo.md`](docs/demo.md).
+
 ## Layanan
 
 | Service | Alamat dari host | Fungsi |
@@ -87,7 +87,11 @@ Nilai demo ditetapkan di [`docker-compose.yml`](docker-compose.yml). Stack bisa 
 
 ## Dokumentasi dan log
 
-Setelah pekerjaan role terkait digabungkan, `docs/architecture.md` memuat arsitektur, `docs/demo.md` memuat runbook demo, dan `docs/experiments.md` memuat eksperimen kegagalan.
+- [`docs/architecture.md`](docs/architecture.md): arsitektur dan alur permintaan laporan.
+- [`docs/demo.md`](docs/demo.md): runbook demo tiga menit.
+- [`docs/experiments.md`](docs/experiments.md): eksperimen kegagalan (prediksi, hasil, penjelasan) dengan bukti di `docs/evidence/`. Skripnya: `scripts/failure_stop_source.sh` dan `scripts/failure_pause_source.sh`.
+- [`docs/concepts.md`](docs/concepts.md): kaitan dengan konsep kuliah.
+- [`docs/Kilamart.pdf`](docs/Kilamart.pdf): slide presentasi.
 
 Jalankan laporan lalu periksa log berikut untuk melihat aktivitas di kedua database. Pemeriksaan kesehatan database juga menghasilkan kueri di log.
 
@@ -101,7 +105,7 @@ docker compose exec -T stock-db tail -n 50 /tmp/general.log
 | Gejala | Yang perlu dicek |
 | --- | --- |
 | `port is already allocated` | Pastikan port host 5433, 3307, dan 8001–8003 tersedia. |
-| Build gagal saat menyiapkan Federation | Pastikan `services/federation/Dockerfile` sudah digabungkan dan build dapat mengakses internet. |
+| Build gagal atau sangat lama | Build pertama mengunduh image, paket Python, dan extension DuckDB, jadi butuh internet. Baca pesan error pertama di log build. |
 | Database belum `healthy` | Periksa `docker compose ps` dan `docker compose logs orders-db stock-db` untuk melihat kegagalan inisialisasi. |
 | Laporan mengembalikan `503` atau `504` | Periksa sumber yang disebut di respons dan statusnya lewat `docker compose ps`. Jalankan kembali sumber jika berhenti. |
 | Perubahan demo masih ada setelah restart | `stop` dan `start` mempertahankan data. Untuk kembali ke seed, gunakan perintah reset di bagian mulai cepat. |
