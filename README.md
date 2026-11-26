@@ -1,5 +1,7 @@
 # KilatMart Query Federation
 
+![Sampul presentasi KilatMart Query Federation](docs/cover.png)
+
 Satu query SQL menggabungkan tabel `orders` (PostgreSQL) dan `stock` (MySQL) lewat DuckDB, tanpa menyalin data. Pertanyaan yang dijawab: **order berstatus `paid` yang barangnya sudah di bawah batas reorder**.
 
 Latihan kelompok IF4052 Service Computing. DuckDB membaca kedua sumber saat laporan diminta dan mengirim hasilnya langsung ke analis.
@@ -27,6 +29,14 @@ Untuk menguji database dan API sumber saat layanan Federation masih dikerjakan, 
 Untuk mengembalikan data demo ke seed, jalankan `docker compose down --volumes`, lalu ulangi langkah mulai cepat. Opsi `--volumes` menghapus data database stack ini, termasuk perubahan selama demo.
 
 ## Demo singkat
+
+<p align="center">
+  <img src="docs/demo-preview.gif" alt="Rekaman KilatMart saat stok berubah, MySQL berhenti, dan laporan pulih">
+</p>
+
+<p align="center">
+  <a href="docs/demo.mp4">Tonton video demo lengkap</a>
+</p>
 
 1. Panggil laporan dari langkah mulai cepat. Federation menjalankan [satu query SQL](services/federation/queries/low_stock_paid_orders.sql) yang menggabungkan PostgreSQL dan MySQL.
 2. Turunkan jumlah stok `SKU-001` dari 50 ke 2. Pemanggilan berikutnya langsung menampilkan order 2, sehingga jumlah baris menjadi 5. Kembalikan stok ke 50 untuk memulihkan hasil awal.
