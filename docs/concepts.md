@@ -1,36 +1,25 @@
-# Konsep query federation
+# Federasi kueri dalam KilatMart
 
 ## Gaya integrasi
 
-KilatMart memakai query federation. `federation` menerima satu permintaan laporan, membuka koneksi DuckDB, lalu menghubungkan PostgreSQL dan MySQL dengan `ATTACH`. Query pada `services/federation/queries/low_stock_paid_orders.sql` menggabungkan `shop.orders` dengan `inv.stock` menggunakan `sku`.
+KilatMart menggunakan federasi kueri (*query federation*) untuk menggabungkan data dari PostgreSQL dan MySQL. DuckDB membaca `shop.orders` dan `inv.stock` ketika analis meminta laporan, lalu menggabungkan keduanya berdasarkan `sku`. Hasil dikirim sebagai JSON. Perubahan stok melalui `inventory-api` dapat terlihat pada permintaan laporan berikutnya karena DuckDB membaca kembali tabel stok.
 
-Federation membaca data di sumber ketika laporan diminta. Hasilnya dikembalikan langsung kepada analis dan tidak disimpan di analytics store. Perubahan stok melalui `inventory-api` terlihat pada laporan berikutnya karena query membaca baris terbaru dari MySQL.
+## Ketergantungan antarkomponen
 
-## Coupling yang berkurang
+PostgreSQL dan MySQL dapat mempertahankan mesin dan skema masing-masing. Analis cukup mengakses satu endpoint laporan, sementara `federation` menangani koneksi ke sumber. API sumber tetap menangani perubahan data. Jalur laporan memakai akun dengan izin baca dan koneksi `READ_ONLY`. Pembacaan langsung juga meniadakan jadwal pemutakhiran tabel salinan untuk laporan ini.
 
-- Kedua database tidak perlu memakai mesin atau skema fisik yang sama. DuckDB menangani koneksi PostgreSQL dan MySQL pada satu query.
-- Tidak ada tabel salinan yang harus dijadwalkan atau disegarkan. Data laporan mengikuti keadaan sumber saat query berjalan.
-- API sumber tetap memiliki tanggung jawab menulis data. `federation` menggunakan akun `fed_ro` dan `READ_ONLY`, sehingga jalur laporan tidak mendapat hak tulis.
-- Analis cukup memakai endpoint laporan dan tidak perlu mengetahui detail koneksi setiap sumber.
+Kueri tetap bergantung pada nama tabel, nama kolom, dan tipe data sumber. Sebagai contoh, perubahan tipe atau makna `sku` pada salah satu tabel dapat mengganggu penggabungan. Alias `shop` dan `inv` juga harus sesuai antara konfigurasi `SOURCES` dan [SQL laporan](../services/federation/queries/low_stock_paid_orders.sql).
 
-## Coupling yang muncul
+Kedua sumber harus dapat dijangkau saat laporan diminta. Resolusi nama, pembukaan koneksi, dan pembacaan data ikut menentukan waktu respons. Semakin sering laporan diminta, semakin sering pula basis data sumber melayani pembacaan. Jika salah satu sumber gagal, pemanggil menerima respons galat untuk laporan gabungan.
 
-- Query bergantung pada nama tabel, kolom, dan tipe data di kedua sumber. Perubahan `orders.sku`, `stock.sku`, atau kolom filter dapat mematahkan laporan.
-- Alias `shop` dan `inv` harus konsisten antara `SOURCES` di `federation.py` dan SQL laporan.
-- Satu laporan memerlukan kedua sumber. Jika `orders-db` atau `stock-db` mati, hasil sebagian tidak dikembalikan. API memetakan kegagalan menjadi `503` atau `504`.
-- Beban join dan pembacaan jatuh ke database sumber ketika laporan dijalankan. Banyak analis atau query yang mahal dapat meningkatkan beban sumber.
-- Ketersediaan laporan mengikuti jaringan dan kredensial sumber. Koneksi baru dibuat pada setiap request, sehingga waktu resolusi nama dan koneksi ikut masuk ke waktu laporan.
+## Cakupan pekerjaan ESB dan ETL
 
-## Pekerjaan ESB atau ETL yang diambil alih
+Dalam skenario pembacaan ini, `federation` menangani sebagian tugas yang dapat ditempatkan pada alur integrasi berbasis *enterprise service bus* (ESB). Layanan membuka koneksi ke dua sumber, meminta data yang diperlukan, lalu menyajikan satu respons kepada analis. DuckDB meneruskan sebagian penyaringan ke sumber dan mengerjakan penggabungan hasil.
 
-Pada skenario ini, federation mengambil pekerjaan orkestrasi baca yang biasanya dikerjakan oleh alur integrasi terpisah. DuckDB membuka koneksi ke dua sumber, mendorong sebagian filter ke sumber, menjalankan join, dan mengembalikan satu bentuk JSON kepada analis.
+Laporan ini juga dapat disusun tanpa proses ekstraksi, transformasi, dan pemuatan (*extract, transform, load* atau ETL) terjadwal. Penyaringan dan penggabungan berlangsung saat laporan diminta sehingga hasilnya tidak perlu dimuat ke penyimpanan analitik. Cakupan pendekatan ini terbatas pada penyajian laporan dari data sumber yang tersedia saat itu.
 
-Federation juga menghilangkan kebutuhan ETL berkala untuk salinan laporan ini. Tidak ada proses ekstraksi terjadwal, transformasi ke tabel perantara, atau pemuatan ke analytics store. API sumber tetap menjadi jalur perubahan data, sedangkan federation hanya menyusun data saat dibaca.
+## Batas penerapan
 
-## Batasan alat
+DuckDB berjalan dalam satu kontainer. Penggabungan data dikerjakan oleh kontainer tersebut, sedangkan pembacaan membebani basis data sumber. Laporan tidak menyimpan riwayat, sehingga keadaan stok pada waktu sebelumnya tidak dapat ditelusuri dari hasil laporan saat ini.
 
-- DuckDB pada service ini berjalan pada satu container. Tidak ada cluster query atau pembagian beban lintas node.
-- Federation tidak menyimpan riwayat. Laporan hanya menggambarkan data yang dapat dibaca ketika request berlangsung.
-- Kegagalan satu sumber menghentikan laporan gabungan. Endpoint `health/sources` membantu menunjukkan sumber yang bermasalah, tetapi tidak menyediakan hasil pengganti.
-- Akun dan kata sandi demo dikirim melalui variabel lingkungan dan connection string. Konfigurasi ini cocok untuk latihan, tetapi perlu pengelolaan rahasia yang lebih baik pada lingkungan produksi.
-- Query timeout mencegah request menggantung terlalu lama, tetapi tidak menghapus biaya koneksi dan pembacaan yang sudah terjadi di sumber.
+Endpoint `/health/sources` membantu mengenali sumber yang bermasalah. Batas waktu kueri membatasi waktu tunggu layanan dan memicu upaya interupsi, sementara biaya koneksi atau pembacaan yang telah terjadi tetap ditanggung sumber. Kredensial pada string koneksi dan variabel lingkungan merupakan bagian dari konfigurasi demo.
